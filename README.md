@@ -5,6 +5,7 @@ Flask_mongodb demo application
 # MSc Big Data and Analyics
 
 # Exam Project
+Flask applicatin with MongoDB
 
 # Instructions:
 
