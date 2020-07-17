@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Grades</title>	
+<meta charset="utf-8">
+<meta name="author" content="Evangelidakis Leandros">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <a class="navbar-brand" href="/">Student Grades</a>
+
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="/mongodb">MongoDB</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/analytics">Analytics</a>
+    </li>    
+  </ul>
+</nav>
+
+
+<div class= "container">	
+<h1>Student Grades</h1>
+
+{% if db == "mongo" %}	
+<h2>Retrieving data from mongodb container</h2>
+<img src="https://webassets.mongodb.com/_com_assets/cms/mongodb_logo1-76twgcu2dm.png" alt="mongodb" width="200" height="100">
+{% endif %}		
+
+<br/>
+<br/>
+<input class="form-control" id="st_search" type="text" placeholder="Search Student">
+<br/>
+<br/>
+
+
+<!-- Insert new -->
+{% if db == "mongo" %}	
+<form class="form-inline" action="/insert_mongodb" method="POST">
+  <label for="student_id" class="mr-sm-2">Student ID</label>
+  <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Student ID" id="student_id" name="student_id">
+  <label for="grade" class="mr-sm-2">Grade:</label>
+  <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Grade" id="grade" name="grade">
+  <div class="form-check mb-2 mr-sm-2">
+  </div>
+  <button type="submit" class="btn btn-primary mb-2" >Submit</button>
+</form>
+{% endif %}		
+<!-- ----- -->
+
+<!-- ----- -->
+<br/>
+<br/>
+
+<table class="table table-hover">
+	<thead class="thead-light">
+		<tr>
+			<th>Student_id</th>
+			<th>Grade</th>
+		</tr>	
+	</thead>
+	<tbody id="grades">
+    {% for row in data %}
+        <tr>
+        {% if db == "mongo" %}	
+		<td>{{row['student_id']}}</td>
+		<td>{{row['grade']}}</td>
+		{% endif %}		
+
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+
+<script>
+$(document).ready(function(){
+  $("#st_search").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#grades tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+</body>
+</html>
