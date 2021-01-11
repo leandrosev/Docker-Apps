@@ -1,11 +1,9 @@
-# docker_app
-Flask_mongodb demo application
-
 # Evangelidakis Leandros
 # MSc Big Data and Analyics
 
 # Exam Project
-Flask applicatin with MongoDB
+Flask applicatin with MongoDB using Python3, HTML,CSS,Bootstrap
+Contains data entry, data manipulation and extraction of basic statistics and graphs.
 
 # Instructions:
 
