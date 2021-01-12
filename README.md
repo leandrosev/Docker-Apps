@@ -2,7 +2,7 @@
 ## MSc Big Data and Analytics
 
 ### Exam Project
-  Flask applicatin with MongoDB using Python3, HTML,CSS,Bootstrap
+  Dockerized Flask application with MongoDB database using Python,HTML,CSS,Bootstrap
   Contains data entry, data manipulation and extraction of basic statistics and graphs.
 
 ### Instructions:
